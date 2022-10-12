@@ -14,7 +14,15 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/',[\App\Http\Controllers\ProductController::class,'index']);
+Route::group(['prefix'=>'auth'], function (){
+    Route::get('register',[\App\Http\Controllers\AuthController::class,'register'])->name('register');
+    Route::get('login',[\App\Http\Controllers\AuthController::class,'auth'])->name('auth');
+    Route::post('user/create',[\App\Http\Controllers\AuthController::class,'create'])->name('user.create');
+    Route::post('signin',[\App\Http\Controllers\AuthController::class,'login'])->name('login');
+    Route::get('logout',[\App\Http\Controllers\AuthController::class,'logout'])->name('logout');
+});
+
+Route::get('/',[\App\Http\Controllers\ProductController::class,'index'])->name('products');
 Route::get('/create',[\App\Http\Controllers\ProductController::class,'create'])->name('create');
 Route::post('/store',[\App\Http\Controllers\ProductController::class,'store'])->name('store');
 Route::get('/{product}',[\App\Http\Controllers\ProductController::class,'product'])->name('product');

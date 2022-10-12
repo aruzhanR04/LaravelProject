@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-{{--@extends('navbar')--}}
-{{--@section('main_content')--}}
-{{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,6 +12,9 @@
 <div class="container">
     @if(session('satus'))
         {{session('status')}}
+    @endif
+    @if(\Illuminate\Support\Facades\Auth::user())
+        {{\Illuminate\Support\Facades\Auth::user()->email}}
     @endif
         <div class="row mt-3">
             <div class="col-12">

@@ -26,7 +26,13 @@
             {{--            <span class="navbar-toggler-icon"></span>--}}
             {{--        </button>--}}
             <a class="nav-link active" aria-current="page"  href="{{route('create')}}" style="color: #e2e8f0">Add Product</a>
-{{--            <a class="nav-link active" aria-current="page" href="#">Home</a>--}}
+            @if(\Illuminate\Support\Facades\Auth::user())
+                {{\Illuminate\Support\Facades\Auth::user()->email}}
+                <a class="nav-link active" aria-current="page" href="{{route('logout')}}" style="color: #e2e8f0">Logout</a>
+            @else
+            <a class="nav-link active" aria-current="page" href="{{route('register')}}" style="color: #e2e8f0">Sign up</a>
+            <a class="nav-link active" aria-current="page" href="{{route('auth')}}" style="color: #e2e8f0">Sign in</a>
+            @endif
         </div>
     </nav>
 @yield('main_content')
